@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PostIQ Calendar (Beta)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <header class="app-header">
+      <div>
+        <h1>PostIQ Calendar</h1>
+        <p class="subtitle">
+          A simple, shareable social content calendar – no login, just a link.
+        </p>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <div class="toolbar-left">
+        <label class="field-label" for="weekStartInput">Week starting</label>
+        <input type="date" id="weekStartInput" />
+        <button id="prevWeekBtn" class="btn btn-secondary">← Prev week</button>
+        <button id="thisWeekBtn" class="btn btn-secondary">This week</button>
+        <button id="nextWeekBtn" class="btn btn-secondary">Next week →</button>
+      </div>
+      <div class="toolbar-right">
+        <button id="newWeekBtn" class="btn btn-ghost">New blank week</button>
+        <button id="copyLinkBtn" class="btn btn-primary">Copy shareable link</button>
+        <span id="copyStatus" class="copy-status"></span>
+      </div>
+    </section>
+
+    <section>
+      <div id="weekLabel" class="week-label"></div>
+      <div id="calendar" class="calendar"></div>
+    </section>
+  </main>
+
+  <!-- Modal for add/edit item -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal">
+      <header class="modal-header">
+        <h2 id="modalTitle">Add item</h2>
+        <button id="modalCloseBtn" class="icon-button" aria-label="Close">✕</button>
+      </header>
+      <form id="itemForm" class="modal-body">
+        <input type="hidden" id="itemId" />
+        <input type="hidden" id="itemDayIndex" />
+
+        <div class="form-row">
+          <label for="itemTitle">Post summary</label>
+          <input
+            type="text"
+            id="itemTitle"
+            placeholder="e.g. LinkedIn: Evergreen carousel on repurposing"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="itemPlatform">Platform</label>
+          <select id="itemPlatform">
+            <option value="">Select platform</option>
+            <option>LinkedIn</option>
+            <option>X / Twitter</option>
+            <option>Instagram</option>
+            <option>Facebook</option>
+            <option>Threads</option>
+            <option>TikTok</option>
+            <option>Blog</option>
+            <option>Newsletter</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="itemStatus">Status</label>
+          <select id="itemStatus">
+            <option>Planned</option>
+            <option>Drafting</option>
+            <option>Scheduled</option>
+            <option>Published</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="itemNotes">Notes</label>
+          <textarea
+            id="itemNotes"
+            rows="3"
+            placeholder="Key talking points, links, CTAs..."
+          ></textarea>
+        </div>
+
+        <footer class="modal-footer">
+          <button type="button" id="deleteItemBtn" class="btn btn-danger btn-small">
+            Delete
+          </button>
+          <div class="modal-footer-right">
+            <button type="button" id="cancelBtn" class="btn btn-ghost btn-small">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary btn-small">
+              Save
+            </button>
+          </div>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
